@@ -8,7 +8,7 @@ Claude Code에서 쓰는 개인 스킬 모음. 각 스킬은 `<name>/SKILL.md` �
 | 스킬 | 설명 |
 |------|------|
 | `answer-only` | 순수 Q&A 모드. "답만 해라 / 만들지 말고" 류 지시 시 구현·계획 없이 설명만. |
-| `safety-guardrails` | 권한 확인이 꺼진 환경(`--dangerously-skip-permissions`)에서의 최소 보안 원칙. 민감정보·git/CLI·커밋·환경변수 취급. |
+| `safety-guardrails` | 권한 확인이 꺼진 환경(`--dangerously-skip-permissions`)에서의 최소 보안 원칙. 민감정보·git/CLI·커밋·환경변수 취급, IaC/인프라(Terraform·Ansible) 실제 값 조회와 임의 실행 금지. |
 
 ## 발동 방식
 
