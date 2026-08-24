@@ -1,5 +1,8 @@
 # 클로드 멀티 프로필(다계정, 다인증 사용시 로컬에서 적용법)
 
+> 이 문서는 프로필 격리가 **왜 되는지**를 설명한다. 안전 설정 배치 절차는 `../README.md`.
+
+
 ```sh
 # 1. 계정별 디렉터리 생성
 mkdir -p ~/.claude-a ~/.claude-b
@@ -60,7 +63,7 @@ source ~/.bashrc
   "env": {
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "AWS_REGION": "ap-northeast-2",
-    "AWS_BEARER_TOKEN": "your-bedrock-bearer-token-here",
+    "AWS_BEARER_TOKEN_BEDROCK": "your-bedrock-bearer-token-here",
     "ANTHROPIC_MODEL": "arn:aws:bedrock:ap-northeast-2:123456789012:application-inference-profile/your-profile-id"
   }
 }

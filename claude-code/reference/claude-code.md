@@ -114,7 +114,7 @@ Bedrock ID는 `provider.model-name-version:revision` 형식. 표시명이 아니
   "env": {
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "AWS_REGION": "ap-northeast-2",
-    "AWS_BEARER_TOKEN": "your-bedrock-bearer-token-here",
+    "AWS_BEARER_TOKEN_BEDROCK": "your-bedrock-bearer-token-here",
     "ANTHROPIC_MODEL": "arn:aws:bedrock:ap-northeast-2:123456789012:application-inference-profile/your-profile-id"
   }
 }
