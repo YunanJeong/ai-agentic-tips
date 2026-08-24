@@ -12,4 +12,4 @@ AI 에이전트·에이전틱 코딩 도구 관련 팁과 설정 모음.
 | `agentic-ai-start.md` | 에이전틱 AI 입문 정리 |
 | `harness-engineering.md` | 하네스(컨텍스트·도구·권한) 관점의 설계 정리 |
 
-새 머신·새 계정에 Claude Code를 세울 때는 `claude-code/README.md` 부터 본다.
+새 머신·새 계정에 Claude Code를 설치할 때는 `claude-code/README.md` 부터 본다.

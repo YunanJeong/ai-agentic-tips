@@ -70,6 +70,8 @@
 
       "Read(**/.env)",
       "Read(**/.env.*)",
+      "Read(**/.credentials.json)",
+      "Read(**/.claude*/settings.json)",
       "Read(**/.git/config)",
       "Read(**/.gitconfig)",
       "Read(**/.git-credentials)",

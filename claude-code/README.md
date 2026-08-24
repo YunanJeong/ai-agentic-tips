@@ -1,17 +1,25 @@
 # Claude Code 부트스트랩 킷
 
-새 환경에서 Claude Code를 안전한 상태로 다시 세우기 위한 설정 원본.
-**파일 2개를 프로필에 넣으면 끝이다.**
+새 환경의 Claude Code를 안전한 기본값으로 초기 설정할 때 쓰는 원본.
+프로필 디렉터리(`$CLAUDE_CONFIG_DIR`, 미설정이면 `~/.claude`)에 파일 2개를 넣으면 끝이다.
 
 ## 새 환경에 깔 때
 
-새 환경의 Claude에게 이걸 그대로 붙인다.
+### 1. settings.json 의 permissions — 사람이 직접
+
+`global_settings/settings.json.example` 의 `permissions` 블록을 프로필 디렉터리의
+`settings.json` 에 손으로 옮긴다. 파일이 없으면 example을 그대로 복사한다. 끝나면 `chmod 600`.
+
+Claude에게 시키지 않는다. 이 파일의 `env` 에 실제 API 키가 있어서 Claude가 열면 그 값이
+대화에 들어온다. 그리고 차단이 없는 상태로 Claude를 붙이는 것은 순서가 뒤바뀐 것이다.
+
+### 2. 나머지 — Claude에게
 
 ```
 claude-code/ 를 전부 읽고 "적용" 절차대로 현재 세션 프로필에 반영해라.
 ```
 
-## 어떻게 막히나
+## 보안 구조
 
 ```
 settings.json  ← permissions.deny   기계적 차단. 프로그램이 집행, 대화로 못 풂
@@ -29,21 +37,19 @@ CLAUDE.md      ← 지시문             패턴으로 못 막는 판단. 매 세
 
 ## 적용
 
-`<프로필>` 은 현재 세션의 프로필 디렉터리다 — `$CLAUDE_CONFIG_DIR`, 미설정이면 `~/.claude`.
+이 킷 디렉터리(`claude-code/`)에서 실행한다.
 
-1. `global_settings/CLAUDE.md` → `<프로필>/CLAUDE.md` (치환할 내용 없음)
-2. `settings.json`
-   - 없으면 `global_settings/settings.json.example` 을 `<프로필>/settings.json` 으로
-     복사하고 자리표시자를 채운다
-   - 있으면 **`permissions` 블록만 병합.** `env`·`model` 은 손대지 않는다
-   - **Bedrock이 아니면(구독 로그인 등) `env` 와 `model` 을 지운다.**
-     `CLAUDE_CODE_USE_BEDROCK` 이 남으면 인증이 깨진다. `permissions` 만 있으면 된다
-3. `skills/` 의 스킬을 `<프로필>/skills/` 에 **복사한다.** 심링크는 이 저장소가 없어지면
-   깨진 링크로 남는다
+```sh
+PROFILE="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 
-> **금지** — 기존 `settings.json` 통째로 덮어쓰기(시크릿이 들어 있다), 시크릿 값 열어보거나
-> 출력하기(자리표시자는 사용자가 채운다), **적용한 세션에서 검증하기**(설정은 세션 시작 시
-> 로드되므로 방금 쓴 `deny` 는 그 세션에 반영되지 않는다). 수정 전 백업, 권한 600.
+cp global_settings/CLAUDE.md "$PROFILE/CLAUDE.md"
+mkdir -p "$PROFILE/skills" && cp -r skills/* "$PROFILE/skills/"
+```
+
+`settings.json` 은 손대지 않는다. 열지도 않는다.
+
+**적용한 세션에서 검증하지 마라.** 설정은 세션 시작 시 로드되므로 방금 쓴 `deny` 는 그
+세션에 반영되지 않는다.
 
 ## 검증
 
@@ -61,6 +67,8 @@ CLAUDE.md      ← 지시문             패턴으로 못 막는 판단. 매 세
 리전, 모델·추론 프로파일 ARN, Bedrock API 키 — `settings.json` 의 `env`·`model` 이다.
 리전은 추론 프로파일 리전에 맞춘다(일부 최신 글로벌 모델은 `us-east-1`). 키 이름은
 `AWS_BEARER_TOKEN_BEDROCK`(`AWS_BEARER_TOKEN` 아님). 저장소에 커밋하지 않는다.
+Bedrock이 아니면(구독 로그인 등) `env`·`model` 은 지운다 — `CLAUDE_CODE_USE_BEDROCK` 이
+남으면 인증이 깨진다.
 
 ARN·비용 태깅은 `reference/claude-code.md`, 계정별 프로필 분리는
 `reference/multi-profile.md`, `deny` 문법과 동작은 `reference/permissions.md`.
