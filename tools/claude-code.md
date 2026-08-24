@@ -106,7 +106,7 @@ Bedrock ID는 `provider.model-name-version:revision` 형식. 표시명이 아니
   - model은 켰을 때 초기 default 선택 모델을 의미
   - 특정 모델 등록은 `ANTHROPIC_MODEL`환경변수에 의해 적용됨
   - 프로필 별로 theme를 다르게 두면 편하다.
-  - 리전은 추론 프로파일 리전에 맞춘다.
+  - 리전은 추론 프로파일 리전에 맞춘다.(일부 최신글로벌모델은 us-east-1로 진행 필요)
 ```json
 {
   "theme": "dark",
