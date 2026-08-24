@@ -52,16 +52,16 @@ source ~/.bashrc
   - model은 켰을 때 초기 default 선택 모델을 의미
   - 특정 모델 등록은 `ANTHROPIC_MODEL`환경변수에 의해 적용됨
   - 프로필 별로 theme를 다르게 두면 편하다.
-  - 리전은 현 지역이 아닌, us-east-1으로 두는 것이 여러 글로벌모델활용에 좋다.
+  - 리전은 추론 프로파일 리전에 맞춘다.
 ```json
 {
   "theme": "dark",
-  "model": "arn:aws:bedrock:us-east-1:123456789012:application-inference-profile/your-profile-id",
+  "model": "arn:aws:bedrock:ap-northeast-2:123456789012:application-inference-profile/your-profile-id",
   "env": {
     "CLAUDE_CODE_USE_BEDROCK": "1",
-    "AWS_REGION": "us-east-1",
+    "AWS_REGION": "ap-northeast-2",
     "AWS_BEARER_TOKEN": "your-bedrock-bearer-token-here",
-    "ANTHROPIC_MODEL": "arn:aws:bedrock:us-east-1:123456789012:application-inference-profile/your-profile-id"
+    "ANTHROPIC_MODEL": "arn:aws:bedrock:ap-northeast-2:123456789012:application-inference-profile/your-profile-id"
   }
 }
 ```
