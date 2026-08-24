@@ -102,6 +102,24 @@ Bedrock ID는 `provider.model-name-version:revision` 형식. 표시명이 아니
 - "애플리케이션" 탭으로 가서 "애플리케이션 추론 프로파일"을 생성하고 여기에 비용 분류 tag를 달면 된다.
 - 애플리케이션 추론 프로파일 생성시 단일 특정 모델만 선택가능하며, 이 모델에 접근가능한 개별 arn 주소가 발급되는데 이걸 Claude Code 등의 호출 환경에서 modelId로 쓰면된다. 
 
+- 예시:
+  - model은 켰을 때 초기 default 선택 모델을 의미
+  - 특정 모델 등록은 `ANTHROPIC_MODEL`환경변수에 의해 적용됨
+  - 프로필 별로 theme를 다르게 두면 편하다.
+  - 리전은 현 지역이 아닌, us-east-1으로 두는 것이 여러 글로벌모델활용에 좋다.
+```json
+{
+  "theme": "dark",
+  "model": "arn:aws:bedrock:us-east-1:123456789012:application-inference-profile/your-profile-id",
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_REGION": "us-east-1",
+    "AWS_BEARER_TOKEN": "your-bedrock-bearer-token-here",
+    "ANTHROPIC_MODEL": "arn:aws:bedrock:us-east-1:123456789012:application-inference-profile/your-profile-id"
+  }
+}
+```
+
 ## 설정 파일 위치
 
 Claude 관련 설정/데이터는 주로 `.claude/` 아래 모이지만 일부는 바깥에도 있다.
