@@ -94,10 +94,10 @@ Bedrock ID는 `provider.model-name-version:revision` 형식. 표시명이 아니
 4. **cross-region inference**가 필요한 최신 모델은 foundation model ID가 아닌 **inference profile ID**(`us.` / `global.` 등)를 써야 하는 경우가 많음 — 호출 실패 시 profile ID로 바꿔 시도
 5. 리전 및 모델 정보 참고: https://docs.aws.amazon.com/bedrock/latest/userguide/models-region-compatibility.html?refid=5eabf6f5-7510-4f30-9f4b-03d1339cf4e0
 
-#### Bedrock 사용시 비용 태그(tagging) 하기
+#### Bedrock 사용시 비용 태그(tagging) 하기(model선택시 최종 적용)
 
 - 서드파티 모델(Anthropic Claude 등)은 AWS Marketplace 비용으로 집계되어 일반적인 호출 방식으로는 세부 태깅이 어려움
-- tag 등을 달아서 비용정산을 해야할 경우가 있을텐데,
+- tag를 달아 비용정산을 해야할 경우가 있을텐데,
 - AWS 콘솔 > Amazon Bedrock > 좌측 메뉴의 Inference profiles(추론 프로파일)로 이동
 - "애플리케이션" 탭으로 가서 "애플리케이션 추론 프로파일"을 생성하고 여기에 비용 분류 tag를 달면 된다.
 - 애플리케이션 추론 프로파일 생성시 단일 특정 모델만 선택가능하며, 이 모델에 접근가능한 개별 arn 주소가 발급되는데 이걸 Claude Code 등의 호출 환경에서 modelId로 쓰면된다. 
