@@ -47,3 +47,21 @@ source ~/.bashrc
 
 * **역할**: 신뢰할 프로젝트 폴더 목록(`trustedDirectories`), CLI 온보딩 여부, 전역 공지 플래그 등을 담는 메타데이터 파일
 * **멀티계정 영향**: 계정 인증 토큰, 세션, `env` 환경변수는 `CLAUDE_CONFIG_DIR` 디렉터리에 격리되므로, `~/.claude.json` 공유로 인한 **계정 충돌 및 간섭은 없음**
+
+## 각 환경별 settings.json 예시
+  - model은 켰을 때 초기 default 선택 모델을 의미
+  - 특정 모델 등록은 `ANTHROPIC_MODEL`환경변수에 의해 적용됨
+  - 프로필 별로 theme를 다르게 두면 편하다.
+  - 리전은 현 지역이 아닌, us-east-1으로 두는 것이 여러 글로벌모델활용에 좋다.
+```json
+{
+  "theme": "dark",
+  "model": "arn:aws:bedrock:us-east-1:123456789012:application-inference-profile/your-profile-id",
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_REGION": "us-east-1",
+    "AWS_BEARER_TOKEN": "your-bedrock-bearer-token-here",
+    "ANTHROPIC_MODEL": "arn:aws:bedrock:us-east-1:123456789012:application-inference-profile/your-profile-id"
+  }
+}
+```
