@@ -67,6 +67,8 @@ mkdir -p "$PROFILE/skills" && cp -r skills/* "$PROFILE/skills/"
 리전, 모델·추론 프로파일 ARN, Bedrock API 키 — `settings.json` 의 `env`·`model` 이다.
 리전은 추론 프로파일 리전에 맞춘다(일부 최신 글로벌 모델은 `us-east-1`). 키 이름은
 `AWS_BEARER_TOKEN_BEDROCK`(`AWS_BEARER_TOKEN` 아님). 저장소에 커밋하지 않는다.
+키는 선택이다 — 빼면 로컬 AWS 자격증명(`~/.aws` 프로필·SSO 등)으로 인증하므로,
+평문 키를 파일에 두지 않으려면 넣지 않는 쪽이 낫다.
 Bedrock이 아니면(구독 로그인 등) `env`·`model` 은 지운다 — `CLAUDE_CODE_USE_BEDROCK` 이
 남으면 인증이 깨진다.
 

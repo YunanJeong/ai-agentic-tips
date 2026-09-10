@@ -107,6 +107,7 @@ Bedrock ID는 `provider.model-name-version:revision` 형식. 표시명이 아니
   - 특정 모델 등록은 `ANTHROPIC_MODEL`환경변수에 의해 적용됨
   - 프로필 별로 theme를 다르게 두면 편하다.
   - 리전은 추론 프로파일 리전에 맞춘다.(일부 최신글로벌모델은 us-east-1로 진행 필요)
+  - `AWS_BEARER_TOKEN_BEDROCK`은 선택이다. 빼면 로컬 AWS 자격증명(env 키 → `~/.aws` 프로필·SSO → 인스턴스 역할)으로 인증하고, 넣으면 그게 우선한다.
 ```json
 {
   "theme": "dark",
