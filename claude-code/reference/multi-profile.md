@@ -56,7 +56,7 @@ source ~/.bashrc
   - 특정 모델 등록은 `ANTHROPIC_MODEL`환경변수에 의해 적용됨
   - 프로필 별로 theme를 다르게 두면 편하다.
   - 리전은 추론 프로파일 리전에 맞춘다.(일부 최신글로벌모델은 us-east-1로 진행 필요)
-  - `AWS_BEARER_TOKEN_BEDROCK`은 선택이다 — 빼면 로컬 AWS 자격증명을 쓴다(`reference/claude-code.md`).
+  - 인증은 `AWS_PROFILE`(계정별 로컬 자격증명) 또는 `AWS_BEARER_TOKEN_BEDROCK` 중 하나. 토큰을 넣으면 그게 우선하고 `AWS_PROFILE`은 무시된다(`reference/claude-code.md`).
 ```json
 {
   "theme": "dark",
@@ -64,7 +64,7 @@ source ~/.bashrc
   "env": {
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "AWS_REGION": "ap-northeast-2",
-    "AWS_BEARER_TOKEN_BEDROCK": "your-bedrock-bearer-token-here",
+    "AWS_PROFILE": "acct-a",
     "ANTHROPIC_MODEL": "arn:aws:bedrock:ap-northeast-2:123456789012:application-inference-profile/your-profile-id"
   }
 }
